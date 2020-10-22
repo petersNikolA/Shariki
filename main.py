@@ -8,6 +8,9 @@ FPS = 30
 screen = pygame.display.set_mode((1000, 800))
 
 name = input('write your name')
+"""
+you need to click right button in order to add you result to results table
+"""
 level = int(input('difficulty level 1-3'))
 '''
 1 - the easiest 
@@ -52,8 +55,10 @@ speed_ys = []
 
 def generator():
     """
-    generates random parameters for balls
-    :return: x, y - coordinates; r - size of balls
+    generates random parameters for balls and squares
+    :return: x, y - coordinates; r - size; speed_x, speed_y - axial speed of balls
+            xs, ys - coordinates, a - size, speed_xs, speed_ys - axial speed of squares
+            ax, ay - axial acceleration of squares
     """
     for j in range(level1):
         n.append(0)
@@ -77,14 +82,13 @@ def generator():
 
 def test():
     """
-    deletes 0 speed
+    deletes 0 speed and acceleration
     :return: new speed
     """
     for d in range(level1):
         if speed_x[d] == 0:
             speed_x[d] += 5
-        if speed_y[d
-        ] == 0:
+        if speed_y[d] == 0:
             speed_y[d] -= 5
     for h in range(level):
         if speed_xs[h] == 0:
@@ -98,6 +102,10 @@ def test():
 
 
 def balls():
+    """
+    balls' moving
+    :return: new position
+    """
     for m in range(level1):
         x[m] += speed_x[m]
         y[m] += speed_y[m]
@@ -105,6 +113,10 @@ def balls():
 
 
 def square():
+    """
+    squares' moving
+    :return: new position
+    """
     for s in range(level):
         speed_xs[s] += ax[s]
         speed_ys[s] += ay[s]
@@ -114,6 +126,11 @@ def square():
 
 
 def counter():
+    """
+    checks hitting the target
+    :return: updates remaining number of hits for squares (liv)
+             number of hits for balls
+    """
     s = pygame.mouse.get_pos()
     x1 = s[0]
     y1 = s[1]
@@ -128,6 +145,11 @@ def counter():
 
 
 def controller():
+    """
+    controls the location of all balls and squares within the boundaries
+    changes the direction of the speed
+    :return: new speed
+    """
     for l in range(level1):
         if x[l] + r[l] >= 800 or x[l] - r[l] <= 50:
             speed_x[l] *= -1
@@ -153,6 +175,9 @@ def controller():
 
 
 def remover():
+    """
+    deletes hitted balls and squares
+    """
     for p in range(level1):
         if n[p] == 1:
             x[p] = 0
@@ -166,6 +191,9 @@ def remover():
 
 
 def new_circle():
+    """
+    update for counter
+    """
     for t in range(level1):
         n[t] = 0
     for b in range(level):
