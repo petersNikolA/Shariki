@@ -32,6 +32,7 @@ OLIVE = (128, 128, 0)
 COLORS = [RED, BLUE, YELLOW, GREEN, MAGENTA, CYAN, TEAL, OLIVE]
 
 text1 = pygame.font.Font(None, 100)
+text3 = pygame.font.Font(None, 100)
 
 liv = []
 color1 = []
@@ -50,7 +51,6 @@ ay = []
 ax = []
 speed_xs = []
 speed_ys = []
-
 
 
 def generator():
@@ -236,8 +236,11 @@ while not finished:
     new_circle()
     pygame.display.update()
     text = "Score " + str(result)
+    Text = "click right button to finish"
     text2 = text1.render(text, True, WHITE, BLACK)
+    text4 = text3.render(Text, True, WHITE, BLACK)
     screen.fill(BLACK)
     screen.blit(text2, (50, 650))
+    screen.blit(text4, (50, 720))
 
 pygame.quit()
