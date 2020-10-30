@@ -166,10 +166,10 @@ def controller():
                 speed_ys[z] = 30
             else:
                 speed_ys[z] = -30
-        if xs[z] + a[z] >= 800 or xs[0] <= 50:
+        if xs[z] + a[z] >= 800 or xs[z] <= 50:
             speed_xs[z] *= -1
             xs[z] += speed_xs[z]
-        if ys[z] + a[z] >= 600 or ys[0] <= 50:
+        if ys[z] + a[z] >= 600 or ys[z] <= 50:
             speed_ys[z] *= -1
             ys[z] += speed_ys[z]
 
